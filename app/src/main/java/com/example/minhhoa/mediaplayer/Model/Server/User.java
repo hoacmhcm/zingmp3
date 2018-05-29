@@ -22,16 +22,21 @@ public class User {
     @Expose
     private String pass;
 
+    @SerializedName("vip")
+    @Expose
+    private Integer vip;
+
     public User() {
 
     }
 
-    public User(Integer id, String name, String img, String username, String pass) {
+    public User(Integer id, String name, String img, String username, String pass,Integer vip) {
         this.id = id;
         this.name = name;
         this.img = img;
         this.username = username;
         this.pass = pass;
+        this.vip = vip;
     }
 
     public Integer getId() {
@@ -73,4 +78,10 @@ public class User {
     public void setPass(String pass) {
         this.pass = pass;
     }
+
+    public Integer getVip() {
+        return vip;
+    }
+
+
 }

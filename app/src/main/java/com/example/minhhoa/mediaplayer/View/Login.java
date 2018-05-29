@@ -84,6 +84,14 @@ public class Login extends AppCompatActivity implements View.OnClickListener,Get
                 data.putExtra("id",user.getId());  //
                 setResult(RESULT_OK,data);
                 Toast.makeText(Login.this,"Đăng nhập thành công \n đang chuyển hướng !", Toast.LENGTH_LONG).show();
+                if(user.getVip() == 1)
+                {
+                    Toast.makeText(Login.this,"Bạn là user VIP!", Toast.LENGTH_LONG).show();
+                }
+                else
+                {
+                    Toast.makeText(Login.this,"Bạn là user thường!", Toast.LENGTH_LONG).show();
+                }
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     public void run() {

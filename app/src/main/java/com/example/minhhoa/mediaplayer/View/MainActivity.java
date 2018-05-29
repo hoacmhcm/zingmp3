@@ -25,12 +25,14 @@ import android.widget.Toast;
 
 import com.example.minhhoa.mediaplayer.Adapter.ViewPagerAdapter;
 import com.example.minhhoa.mediaplayer.R;
+import com.mancj.materialsearchbar.MaterialSearchBar;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MaterialSearchBar.OnSearchActionListener {
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
     public static FrameLayout rootLayout;
+    private MaterialSearchBar searchBar;
 
     final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 1;
 
@@ -55,6 +57,9 @@ public class MainActivity extends AppCompatActivity {
 
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
         viewPager = (ViewPager) findViewById(R.id.viewpager);
+        searchBar = (MaterialSearchBar) findViewById(R.id.searchBar);
+
+        searchBar.setOnSearchActionListener(this);
         //tabLayout.setTabGravity(TabLayout.GRAVITY_CENTER);
         FragmentManager manager = getSupportFragmentManager();
         ViewPagerAdapter adapter = new ViewPagerAdapter(manager);
@@ -172,4 +177,20 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onSearchStateChanged(boolean enabled) {
+        String s = enabled ? "enabled" : "disabled";
+        Toast.makeText(MainActivity.this, "Search " + s, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onSearchConfirmed(CharSequence text) {
+        startSearch(text.toString(), true, null, true);
+    }
+
+    @Override
+    public void onButtonClicked(int buttonCode) {
+        Toast t = Toast.makeText(getBaseContext(), "ButtonClick", Toast.LENGTH_LONG);
+        t.show();
+    }
 }

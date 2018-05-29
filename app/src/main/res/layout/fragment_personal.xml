@@ -1,168 +1,173 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.5"
-        android:orientation="horizontal"
-        android:id="@+id/personal_login"
-        android:background="@color/colorYahoo">
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:id="@+id/personal_image_user"
-            android:src="@drawable/ic_avatar_login"
-            android:padding="10dp"/>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="3"
-            android:text="Đăng nhập"
-            android:id="@+id/personal_name_user"
-            android:textColor="@color/colorWhite"
-            android:textStyle="bold"
-            android:gravity="center_vertical"
-            android:textSize="20sp"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.5"
-            android:text="NHẠC ONLINE"
-            android:textStyle="bold"
-            android:gravity="center_vertical"
-            android:textColor="@color/colorBlack"
-            android:textSize="20dp"
-            android:layout_marginLeft="15dp"/>
+
         <LinearLayout
+            android:id="@+id/personal_login"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:id="@+id/personal_library_favourite">
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:src="@drawable/circle_favourite"
-                android:padding="15dp"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="4"
-                android:text="Nhạc yêu thích"
-                android:textSize="17sp"
-                android:gravity="center_vertical"
-                android:textColor="@color/colorBlack"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:id="@+id/personal_library_playlist">
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:src="@drawable/circle_playlist"
-                android:padding="15dp"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="4"
-                android:text="Playlist"
-                android:textSize="17sp"
-                android:gravity="center_vertical"
-                android:textColor="@color/colorBlack"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:id="@+id/personal_library_online"
+            android:layout_height="match_parent"
             android:orientation="horizontal">
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:src="@drawable/circle_library"
-                android:padding="15dp"/>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/personal_image_user"
+                android:layout_width="@dimen/icon"
+                android:layout_height="@dimen/icon"
+
+                android:padding="10dp"
+                android:src="@drawable/ic_avatar_login" />
+
             <TextView
-                android:layout_width="0dp"
+                android:id="@+id/personal_name_user"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="4"
-                android:text="Thư viện nhạc"
-                android:textSize="17sp"
                 android:gravity="center_vertical"
-                android:textColor="@color/colorBlack"/>
+                android:text="Đăng nhập"
+                android:textSize="20sp" />
         </LinearLayout>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.5"
-            android:text="NHẠC OFFLINE"
-            android:textStyle="bold"
-            android:gravity="center_vertical"
-            android:textColor="@color/colorBlack"
-            android:textSize="20dp"
-            android:layout_marginLeft="15dp"/>
+
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:gravity="center_vertical"
+                android:text="OFFLINE MUSIC"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/personal_library_offline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <ImageView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:src="@drawable/circle_library2"
-                android:padding="15dp"/>
+                android:layout_width="@dimen/icon"
+                android:layout_height="@dimen/icon"
+                android:padding="15dp"
+                android:src="@drawable/circle_library2" />
+
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="4"
-                android:text="Thư viện nhạc"
-                android:textSize="17sp"
                 android:gravity="center_vertical"
-                android:textColor="@color/colorBlack"/>
+                android:text="Thư viện nhạc"
+                android:textColor="@color/colorBlack"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:gravity="center_vertical"
+                android:text="ONLINE MUSIC"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/personal_library_favourite"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/icon"
+                android:layout_height="@dimen/icon"
+                android:padding="15dp"
+                android:src="@drawable/circle_favourite" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="Nhạc yêu thích"
+                android:textColor="@color/colorBlack"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/personal_library_playlist"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/icon"
+                android:layout_height="@dimen/icon"
+                android:padding="15dp"
+                android:src="@drawable/circle_playlist" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="Playlist"
+                android:textColor="@color/colorBlack"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/personal_library_online"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/icon"
+                android:layout_height="@dimen/icon"
+                android:padding="15dp"
+                android:src="@drawable/circle_library" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="Thư viện nhạc"
+                android:textColor="@color/colorBlack"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/personal_logout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/icon"
+                android:layout_height="@dimen/icon"
+                android:padding="20dp"
+                android:src="@drawable/ic_logout" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="Đăng xuất"
+                android:textColor="@color/colorBlack"
+                android:textSize="17sp" />
         </LinearLayout>
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.5"
-        android:id="@+id/personal_logout"
-        android:orientation="horizontal">
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/ic_logout"
-            android:padding="20dp"/>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="4"
-            android:text="Đăng xuất"
-            android:textSize="17sp"
-            android:gravity="center_vertical"
-            android:textColor="@color/colorBlack"/>
-    </LinearLayout>
-</LinearLayout>
+</ScrollView>

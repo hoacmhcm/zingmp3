@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.xuant.mediaplayer", appContext.getPackageName());
+        assertEquals("com.example.minhhoa.mediaplayer", appContext.getPackageName());
     }
 }

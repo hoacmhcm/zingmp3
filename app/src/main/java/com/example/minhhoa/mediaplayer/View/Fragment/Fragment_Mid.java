@@ -41,7 +41,6 @@ import eu.gsottbauer.equalizerview.EqualizerView;
 //import eu.gsottbauer.equalizerview.EqualizerView;
 
 
-
 public class Fragment_Mid extends Fragment implements View.OnClickListener, GetSongListener, FavouriteListener {
 
     public static CircleImageView fragment_mid_imagedisk;
@@ -68,6 +67,7 @@ public class Fragment_Mid extends Fragment implements View.OnClickListener, GetS
         dbSongOnline = new DBSongOnline(this);
         dbFavourite = new DBFavourite(this);
 
+
         // Lấy id của user đang đăng nhập hiện tại
         try {
             HashMap<String, String> user = sessionManager.getUserDetails();
@@ -75,6 +75,7 @@ public class Fragment_Mid extends Fragment implements View.OnClickListener, GetS
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
+
 
         // Đổi ảnh của disk dựa theo loại hình đang phát nhạc hiện tại
         String url_imgitem = Utils.BASE_URL + "getimg?nameimg=";
