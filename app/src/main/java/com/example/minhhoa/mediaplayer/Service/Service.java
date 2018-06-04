@@ -23,7 +23,7 @@ public interface Service { //Định nghĩa các REST API (Api Services) cho Ret
 
    // Hàm  lấy songs theo search
    @GET("/getsongbysearch")
-   Call<ArrayList<SongOnline>> getSongBySearch(@Query("titile") String title);
+   Call<ArrayList<SongOnline>> getSongBySearch(@Query("title") String title);
 
    // Hàm  lấy songs favourite theo user
    @GET("/getsongfavourite")

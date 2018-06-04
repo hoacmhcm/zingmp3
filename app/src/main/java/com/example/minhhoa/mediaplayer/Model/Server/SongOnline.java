@@ -1,11 +1,14 @@
 package com.example.minhhoa.mediaplayer.Model.Server;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 
 
-public class SongOnline {
+public class SongOnline implements Parcelable {
     @SerializedName("id")
     @Expose
     private int id;
@@ -28,7 +31,7 @@ public class SongOnline {
     @Expose
     private String ARTIST;
 
-    public SongOnline(){
+    public SongOnline() {
 
     }
 
@@ -41,6 +44,28 @@ public class SongOnline {
         this.id_country = id_country;
         this.ARTIST = ARTIST;
     }
+
+    protected SongOnline(Parcel in) {
+        id = in.readInt();
+        DATA = in.readString();
+        IMG = in.readString();
+        TITLE = in.readString();
+        id_artist = in.readInt();
+        id_country = in.readInt();
+        ARTIST = in.readString();
+    }
+
+    public static final Creator<SongOnline> CREATOR = new Creator<SongOnline>() {
+        @Override
+        public SongOnline createFromParcel(Parcel in) {
+            return new SongOnline(in);
+        }
+
+        @Override
+        public SongOnline[] newArray(int size) {
+            return new SongOnline[size];
+        }
+    };
 
     public int getId() {
         return id;
@@ -96,5 +121,21 @@ public class SongOnline {
 
     public void setARTIST(String ARTIST) {
         this.ARTIST = ARTIST;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(DATA);
+        dest.writeString(IMG);
+        dest.writeString(TITLE);
+        dest.writeInt(id_artist);
+        dest.writeInt(id_country);
+        dest.writeString(ARTIST);
     }
 }

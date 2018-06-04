@@ -28,15 +28,16 @@ public class DBSongOnline {
     public void getSongBySearch(final String title) {
         mService = Utils.getService();
         Call<ArrayList<SongOnline>> call = mService.getSongBySearch(title);
+        Log.e("TITLE", title);
         Log.e("Response", call.request().url().toString());
         call.enqueue(new Callback<ArrayList<SongOnline>>() {
             @Override
             public void onResponse(Call<ArrayList<SongOnline>> call, Response<ArrayList<SongOnline>> response) {
                 if (response.isSuccessful()) {
                     getSongListener.getListSong(response.body());
-                    Log.e("Response", "Lấy được " + response.body().size() + " Song theo country " + title);
+                    Log.e("Response", "Lấy được " + response.body().size() + " Song theo search: " + title);
                 } else
-                    Log.e("Response", "Không lấy được Song theo country " + title);
+                    Log.e("Response", "Không lấy được Song theo search: " + title);
             }
 
             @Override

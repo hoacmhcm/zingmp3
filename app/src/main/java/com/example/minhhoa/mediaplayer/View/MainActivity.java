@@ -2,7 +2,6 @@ package com.example.minhhoa.mediaplayer.View;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
@@ -17,6 +16,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -24,15 +24,29 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.minhhoa.mediaplayer.Adapter.ViewPagerAdapter;
+import com.example.minhhoa.mediaplayer.Database.DBSongOnline;
+import com.example.minhhoa.mediaplayer.Database.GetSongListener;
+import com.example.minhhoa.mediaplayer.Model.Server.SongOnline;
 import com.example.minhhoa.mediaplayer.R;
+import com.example.minhhoa.mediaplayer.View.Fragment.Fragment_Search;
 import com.mancj.materialsearchbar.MaterialSearchBar;
 
-public class MainActivity extends AppCompatActivity implements MaterialSearchBar.OnSearchActionListener {
+import java.util.ArrayList;
+
+
+public class MainActivity extends AppCompatActivity implements MaterialSearchBar.OnSearchActionListener, GetSongListener {
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
     public static FrameLayout rootLayout;
     private MaterialSearchBar searchBar;
+
+    public static String searchString = "";
+    private DBSongOnline dbSongOnline;
+    public ArrayList<SongOnline> songOnlineArrayList_search = new ArrayList<>();
+    FragmentManager manager;
+    ViewPagerAdapter adapter;
+
 
     final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 1;
 
@@ -61,8 +75,8 @@ public class MainActivity extends AppCompatActivity implements MaterialSearchBar
 
         searchBar.setOnSearchActionListener(this);
         //tabLayout.setTabGravity(TabLayout.GRAVITY_CENTER);
-        FragmentManager manager = getSupportFragmentManager();
-        ViewPagerAdapter adapter = new ViewPagerAdapter(manager);
+        manager = getSupportFragmentManager();
+        adapter = new ViewPagerAdapter(manager);
 
 
         // Cài đặt pageview cho mainactivity
@@ -80,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements MaterialSearchBar
             if (Screen_PlayMusic.mediaPlayer != null && Screen_PlayMusic.type.equals("offline")) {
                 Music_Bottom pb = new Music_Bottom();
                 android.app.FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                android.app.FragmentTransaction transaction = fragmentManager.beginTransaction();
                 transaction.add(R.id.music_bottom, pb);
                 transaction.commit();
             } else
@@ -98,6 +112,8 @@ public class MainActivity extends AppCompatActivity implements MaterialSearchBar
         } else {
         }
 
+        dbSongOnline = new DBSongOnline(this);
+
 
     }
 
@@ -113,9 +129,15 @@ public class MainActivity extends AppCompatActivity implements MaterialSearchBar
         tabLayout.getTabAt(1).setCustomView(tabTwo);
 
         TextView tabThree = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
-        tabThree.setText("Thêm");
-        tabThree.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_tab_menu, 0, 0);
+        tabThree.setText("Tìm");
+        tabThree.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_search, 0, 0);
         tabLayout.getTabAt(2).setCustomView(tabThree);
+
+
+        TextView tabFour = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
+        tabFour.setText("Thêm");
+        tabFour.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_tab_menu, 0, 0);
+        tabLayout.getTabAt(3).setCustomView(tabFour);
     }
 
 
@@ -185,7 +207,10 @@ public class MainActivity extends AppCompatActivity implements MaterialSearchBar
 
     @Override
     public void onSearchConfirmed(CharSequence text) {
-        startSearch(text.toString(), true, null, true);
+        searchString = text.toString();
+        Log.e("String search :", searchString);
+        dbSongOnline.getSongBySearch(searchString);
+
     }
 
     @Override
@@ -193,4 +218,25 @@ public class MainActivity extends AppCompatActivity implements MaterialSearchBar
         Toast t = Toast.makeText(getBaseContext(), "ButtonClick", Toast.LENGTH_LONG);
         t.show();
     }
+
+
+    @Override
+    public void getListSong(ArrayList<SongOnline> songOnlines) {
+        if (!searchString.equals("")) {
+            if (songOnlineArrayList_search != null) {
+                songOnlineArrayList_search.clear();
+            }
+            songOnlineArrayList_search = songOnlines;
+            Log.e("listSongSearch : ",String.valueOf(songOnlineArrayList_search.size()));
+            adapter.song_search = songOnlineArrayList_search;
+            adapter.notifyDataSetChanged();
+            tabLayout.getTabAt(2).select();
+
+
+////            Log.e("Song length: ",String.valueOf(songOnlineArrayList_search.size()));
+        }
+
+    }
+
+
 }
