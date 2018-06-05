@@ -39,7 +39,7 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
                 Bundle args = new Bundle();
                 args.putParcelableArrayList("listSearch", song_search);
                 frag.setArguments(args);
-                Log.e("listSongSearchItem : ",String.valueOf(song_search.size()));
+//                Log.e("listSongSearchItem : ",String.valueOf(song_search.size()));
                 break;
             case 3:
                 frag = new Fragment_Search();

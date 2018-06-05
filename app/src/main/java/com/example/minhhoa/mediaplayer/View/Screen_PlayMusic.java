@@ -162,7 +162,7 @@ public class Screen_PlayMusic extends AppCompatActivity implements View.OnClickL
         if(type.equals("offline"))
             songOfflineArrayList = Music_Offline.songOfflineArrayList;
         else if(type.equals("online"))
-            songOnlineArrayList = Music_Online.songOnlineArrayList;
+            songOnlineArrayList = Music_Online.songOnlineArrayList_online;
         else if(type.equals("favourite"))
             songOnlineArrayList = Music_Favourite.songOnlineArrayList;
         else if(type.equals("playlist"))
@@ -455,7 +455,7 @@ public class Screen_PlayMusic extends AppCompatActivity implements View.OnClickL
         if(type.equals("online") || type.equals("favourite") || type.equals("playlist")){
             String url_imgitem= Utils.BASE_URL+"getimg?nameimg=";
             try{
-                Picasso.with(getApplicationContext()).load(url_imgitem+ Music_Online.songOnlineArrayList
+                Picasso.with(getApplicationContext()).load(url_imgitem+ Music_Online.songOnlineArrayList_online
                         .get(position).getIMG()+".jpg")
                         .placeholder(R.drawable.song_empty)
                         .error(R.drawable.song_empty)

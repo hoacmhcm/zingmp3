@@ -80,7 +80,7 @@ public class Fragment_Mid extends Fragment implements View.OnClickListener, GetS
         // Đổi ảnh của disk dựa theo loại hình đang phát nhạc hiện tại
         String url_imgitem = Utils.BASE_URL + "getimg?nameimg=";
         if (Screen_PlayMusic.type.equals("online")) {   // phát nhạc online
-            Picasso.with(getContext()).load(url_imgitem + Music_Online.songOnlineArrayList
+            Picasso.with(getContext()).load(url_imgitem + Music_Online.songOnlineArrayList_online
                     .get(Screen_PlayMusic.position).getIMG() + ".jpg")
                     .placeholder(R.drawable.song_empty)
                     .error(R.drawable.song_empty)
@@ -132,7 +132,7 @@ public class Fragment_Mid extends Fragment implements View.OnClickListener, GetS
                             .get(Screen_PlayMusic.position).getId();
                     isfav = true;
                 } else if (Screen_PlayMusic.type.equals("online")) {
-                    song_id = Music_Online.songOnlineArrayList
+                    song_id = Music_Online.songOnlineArrayList_online
                             .get(Screen_PlayMusic.position).getId();
                 } else if (Screen_PlayMusic.type.equals("playlist")) {
                     song_id = Playlist_Song.songOnlineArrayList
@@ -164,7 +164,7 @@ public class Fragment_Mid extends Fragment implements View.OnClickListener, GetS
                         songOnline = Music_Favourite.songOnlineArrayList
                                 .get(Screen_PlayMusic.position);
                     } else if (Screen_PlayMusic.type.equals("online")) {
-                        songOnline = Music_Online.songOnlineArrayList
+                        songOnline = Music_Online.songOnlineArrayList_online
                                 .get(Screen_PlayMusic.position);
                     } else if (Screen_PlayMusic.type.equals("playlist")) {
                         songOnline = Playlist_Song.songOnlineArrayList
@@ -194,7 +194,7 @@ public class Fragment_Mid extends Fragment implements View.OnClickListener, GetS
     public void getListSong(ArrayList<SongOnline> songOnlines) {
         if (Screen_PlayMusic.type.equals("online")) {
             for (int i = 0; i < songOnlines.size(); i++) {
-                if (Music_Online.songOnlineArrayList
+                if (Music_Online.songOnlineArrayList_online
                         .get(Screen_PlayMusic.position).getId() == songOnlines.get(i).getId()) {
                     add_favourite.setImageResource(R.drawable.ic_mm_favorites);
                     isfav = true;

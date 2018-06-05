@@ -40,7 +40,7 @@ public class Music_Online extends AppCompatActivity implements AdapterView.OnIte
     public static FrameLayout rootLayout;
 
     DBSongOnline dbSongOnline;
-    public static ArrayList<SongOnline> songOnlineArrayList;
+    public static ArrayList<SongOnline> songOnlineArrayList_online;
     Song_Online_Adapter song_online_adapter;
 
     @Override
@@ -215,8 +215,8 @@ public class Music_Online extends AppCompatActivity implements AdapterView.OnIte
     //Hàm lấy danh sách bài hát dựa theo hàm get trước
     @Override
     public void getListSong(ArrayList<SongOnline> songOnlines) {
-        songOnlineArrayList = songOnlines;
-        song_online_adapter = new Song_Online_Adapter(getApplicationContext(),songOnlineArrayList);
+        songOnlineArrayList_online = songOnlines;
+        song_online_adapter = new Song_Online_Adapter(getApplicationContext(), songOnlineArrayList_online);
         if(CurrentTab == 0){
             lv_VPOP.setAdapter(song_online_adapter);
         }else if(CurrentTab == 1){

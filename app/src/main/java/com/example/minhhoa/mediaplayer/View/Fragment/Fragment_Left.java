@@ -47,7 +47,7 @@ public class Fragment_Left  extends Fragment implements AdapterView.OnItemClickL
             fragment_left_lv.setAdapter(song_offlineScreen_adapter);
             song_offlineScreen_adapter.setPosition(Screen_PlayMusic.position);
         }else if(Screen_PlayMusic.type.equals("online")){   // nếu là từ music online thì set list theo online
-            songOnlineArrayList = Music_Online.songOnlineArrayList;
+            songOnlineArrayList = Music_Online.songOnlineArrayList_online;
             song_offlineScreen_onl_adapter = new Song_OfflineScreen_Onl_Adapter(getContext(),songOnlineArrayList);
             fragment_left_lv.setAdapter(song_offlineScreen_onl_adapter);
             song_offlineScreen_onl_adapter.setPosition(Screen_PlayMusic.position);

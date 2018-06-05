@@ -67,7 +67,7 @@ public class Music_Bottom extends Fragment implements View.OnClickListener{
             songOfflineArrayList = Music_Offline.songOfflineArrayList;
         }
         else if(Screen_PlayMusic.type.equals("online")){
-            songOnlineArrayList = Music_Online.songOnlineArrayList;
+            songOnlineArrayList = Music_Online.songOnlineArrayList_online;
         }else if(Screen_PlayMusic.type.equals("playlist")){
             songOnlineArrayList = Playlist_Song.songOnlineArrayList;
         }

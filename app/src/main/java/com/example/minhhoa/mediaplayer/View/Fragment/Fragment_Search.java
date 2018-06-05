@@ -12,20 +12,21 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.minhhoa.mediaplayer.Adapter.Song_Online_Adapter;
+import com.example.minhhoa.mediaplayer.Database.GetSongListener;
 import com.example.minhhoa.mediaplayer.Model.Server.SongOnline;
 import com.example.minhhoa.mediaplayer.R;
 import com.example.minhhoa.mediaplayer.View.Screen_PlayMusic;
 
 import java.util.ArrayList;
 
+import static com.example.minhhoa.mediaplayer.View.Music_Online.songOnlineArrayList_online;
 
 
-public class Fragment_Search extends Fragment implements AdapterView.OnItemClickListener {
+public class Fragment_Search extends Fragment implements AdapterView.OnItemClickListener ,GetSongListener {
 
 
     private ListView lvSearch;
     public Song_Online_Adapter song_online_adapter_search;
-    private ArrayList<SongOnline> songOnlineArrayList_search = new ArrayList<>();
 
 
     public Fragment_Search() {
@@ -47,23 +48,28 @@ public class Fragment_Search extends Fragment implements AdapterView.OnItemClick
         Bundle bundle = getArguments();
         Log.e("error","CHAY DEN DAY");
         if ((bundle != null)) {
-            ArrayList<SongOnline> songs = getArguments().getParcelableArrayList("listSearch");
+            songOnlineArrayList_online = getArguments().getParcelableArrayList("listSearch");
 
-            Log.e("listSongSearchFragment:",String.valueOf(songs.size()));
+//            Log.e("listSongSearchFragment:",String.valueOf(songs.size()));
 
             // Create an {@link WordAdapter}, whose data source is a list of {@link Word}s. The
             // adapter knows how to create list items for each item in the list.
-            song_online_adapter_search  = new Song_Online_Adapter(getContext(),songs);
+            song_online_adapter_search  = new Song_Online_Adapter(getContext(),songOnlineArrayList_online);
 
             // Find the {@link ListView} object in the view hierarchy of the {@link Activity}.
             // There should be a {@link ListView} with the view ID called list, which is declared in the
             // word_list.xml layout file.
             lvSearch = (ListView) view.findViewById(R.id.lvSearch);
 
+            if(songOnlineArrayList_online != null)
+            {
+                lvSearch.setAdapter(song_online_adapter_search);
+                lvSearch.setOnItemClickListener(this);
+            }
+
 
             // Make the {@link ListView} use the {@link WordAdapter} we created above, so that the
             // {@link ListView} will display list items for each {@link Word} in the list.
-            lvSearch.setAdapter(song_online_adapter_search);
         }
         return view;
     }
@@ -94,4 +100,9 @@ public class Fragment_Search extends Fragment implements AdapterView.OnItemClick
     }
 
 
+    @Override
+    public void getListSong(ArrayList<SongOnline> songOnlines) {
+//        songOnlineArrayList_online = songOnlines;
+
+    }
 }
