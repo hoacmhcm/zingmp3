@@ -13,8 +13,8 @@
         android:layout_height="wrap_content"
         app:mt_hint="Search for songs or artists"
         app:mt_maxSuggestionsCount="10"
-        app:mt_placeholder="Search for songs or artists"
-        app:mt_menuIconDrawable="@drawable/ic_launcher" />
+        app:mt_menuIconDrawable="@drawable/ic_launcher"
+        app:mt_placeholder="Search for songs or artists" />
 
     <include
         layout="@layout/app_bar_main"

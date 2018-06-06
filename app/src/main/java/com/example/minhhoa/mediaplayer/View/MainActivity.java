@@ -112,6 +112,15 @@ public class MainActivity extends AppCompatActivity implements MaterialSearchBar
         } else {
         }
 
+        String permission2 = Manifest.permission.WRITE_EXTERNAL_STORAGE;
+        // Yêu cầu quền truy cập vào file trong sdcard
+        int res2 = this.checkCallingOrSelfPermission(permission);
+        if (res2 != PackageManager.PERMISSION_GRANTED) {
+            haveStoragePermission();
+        } else {
+        }
+
+
         dbSongOnline = new DBSongOnline(this);
 
 
@@ -199,6 +208,26 @@ public class MainActivity extends AppCompatActivity implements MaterialSearchBar
         }
     }
 
+
+    public  boolean haveStoragePermission() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    == PackageManager.PERMISSION_GRANTED) {
+                Log.e("Permission error","You have permission");
+                return true;
+            } else {
+
+                Log.e("Permission error","You have asked for permission");
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                return false;
+            }
+        }
+        else { //you dont need to worry about these stuff below api level 23
+            Log.e("Permission error","You already have the permission");
+            return true;
+        }
+    }
+
     @Override
     public void onSearchStateChanged(boolean enabled) {
         String s = enabled ? "enabled" : "disabled";
@@ -210,7 +239,6 @@ public class MainActivity extends AppCompatActivity implements MaterialSearchBar
         searchString = text.toString();
         Log.e("String search :", searchString);
         dbSongOnline.getSongBySearch(searchString);
-
     }
 
     @Override

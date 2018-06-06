@@ -80,8 +80,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener,Get
             {  // Nếu không trùn thì truyền dữ liệu và trả về activity trước
                 this.user = user;
                 Intent data = new Intent();
-                data.putExtra("username",user.getUsername());  //
-                data.putExtra("id",user.getId());  //
+//                data.putExtra("username",user.getUsername());  //
+//                data.putExtra("id",user.getId());  //
                 setResult(RESULT_OK,data);
                 Toast.makeText(Login.this,"Đăng nhập thành công \n đang chuyển hướng !", Toast.LENGTH_LONG).show();
                 if(user.getVip() == 1)
